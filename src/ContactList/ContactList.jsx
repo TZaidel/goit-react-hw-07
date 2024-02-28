@@ -1,15 +1,15 @@
 import Contact from '../Contact/Contact.jsx';
 import { useSelector } from 'react-redux';
+import { selectUsers, selectNameFilter } from '../redux/selectors.js';
 
 import css from './ContactList.module.css';
 
 export default function ContactList() {
-  const users = useSelector(state => state.users.users);
-  const name = useSelector(state => state.name.name);
+  const users = useSelector(selectUsers);
+  const name = useSelector(selectNameFilter);
   const visibleUsers = users.filter(user =>
-    user.username.toLowerCase().includes(name.toLowerCase())
+    user.username.toLowerCase().includes(name)
   );
-  console.log(users);
 
   return (
     <ul className={css.contactList}>

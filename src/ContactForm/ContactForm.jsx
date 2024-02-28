@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useId } from 'react';
-import { addUser } from '../redux/usersSlice.js';
-import {  useDispatch } from 'react-redux';
+import { addContact } from '../redux/operations.js';
+import { useDispatch } from 'react-redux';
 
 import css from './ContactForm.module.css';
 
@@ -25,7 +25,7 @@ export default function ContactForm() {
       validationSchema={userSchema}
       onSubmit={(values, actions) => {
         console.log(values);
-        dispatch(addUser({ id: Date.now(), ...values }));
+        dispatch(addContact({ id: Date.now(), ...values }));
         actions.resetForm();
       }}
     >
