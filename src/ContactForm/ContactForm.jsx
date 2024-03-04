@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import css from './ContactForm.module.css';
 
 const userSchema = Yup.object().shape({
-  username: Yup.string().min(3, 'Too short!').max(30, 'Too long!').required('Required'),
-  number: Yup.string().min(3, 'Too short!').max(30, 'Too long!').required('Required'),
+  name: Yup.string().min(3, 'Too short!').max(30, 'Too long!').required('Required'),
+  phone: Yup.string().min(3, 'Too short!').max(30, 'Too long!').required('Required'),
 });
 
 export default function ContactForm() {
@@ -19,23 +19,23 @@ export default function ContactForm() {
   return (
     <Formik
       initialValues={{
-        username: '',
-        number: '',
+        name: '',
+        phone: '',
       }}
       validationSchema={userSchema}
       onSubmit={(values, actions) => {
         console.log(values);
-        dispatch(addContact({ id: Date.now(), ...values }));
+        dispatch(addContact({ ...values }));
         actions.resetForm();
       }}
     >
       <Form>
         <label htmlFor={userId}>Name</label>
-        <Field name="username" id={userId} required />
-        <ErrorMessage name="username" component="span" className={css.error} />
+        <Field name="name" id={userId} required />
+        <ErrorMessage name="name" component="span" className={css.error} />
         <label htmlFor={numId}>Number</label>
-        <Field name="number" id={numId} />
-        <ErrorMessage name="number" component="span" className={css.error} />
+        <Field name="phone" id={numId} />
+        <ErrorMessage name="phone" component="span" className={css.error} />
         <button type="submit" className={css.buttonSubmit}>
           Add contact
         </button>
